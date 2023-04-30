@@ -30,7 +30,6 @@ echo "ZSH_THEME="powerlevel10k/powerlevel10k"" >> ~/.zshrc
 p10k configure
 ```
 
-z
 ##### Install node packages
 
 ```console
