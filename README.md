@@ -17,15 +17,19 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ##### Configure Zsh
 
 ```console
-cp -a zshrc ~/.zshrc
+git clone git@gitlab.com:lucasmartins.py/lmzsh.git ~/.config/lmzsh
+```
+
+##### Configure Zsh
+
+```console
+rm -rf ~/.zshrc
+ln -s ~/.config/lmzsh/zshrc ~/.zshrc
 ```
 
 ##### Configure PowerLevel10k theme
 
 ```console
-echo "ZSH_THEME="powerlevel10k/powerlevel10k"" >> ~/.zshrc
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 ```
-
-```console
-p10k configure
-```
+    Close and open terminal to see changes.

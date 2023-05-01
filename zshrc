@@ -5,57 +5,78 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+### Autoloads
 autoload -Uz compinit
 compinit
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-# pipenv
-export PIPENV_VENV_IN_PROJECT=1
-export PIPENV_SHELL=zsh
+autoload -U +X bashcompinit && bashcompinit
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/lucas/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Disable compinit
 #ZSH_DISABLE_COMPFIX="true"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=( git tmux vscode vagrant node npm poetry docker docker-compose brew aws terraform helm ansible )
+### Config PATH
 
-source $ZSH/oh-my-zsh.sh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# User configuration
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# pipenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+export PIPENV_VENV_IN_PROJECT=1
+export PIPENV_SHELL=zsh
+# Mysql
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+# Krew
+export PATH="${PATH}:${HOME}/.krew/bin"
+# c++
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+# poetry
+export PATH="$HOME/.poetry/bin:$PATH"
+# Node.Js
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+# Flutter
+export PATH="$PATH:`pwd`/flutter/bin"
+# Curl
+export PATH="/usr/local/opt/curl/bin:$PATH"
 
-### Autocompletions
+### Config Theme
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Color
+if [ -x "$(command -v exa)" ]; then
+    alias ls="exa"
+    alias la="exa --long --all --group"
+fi
+
+### Config Plugins
+plugins=( git tmux vscode vagrant node npm poetry docker docker-compose brew aws terraform helm ansible zsh-syntax-highlighting )
+
+
+#### User configuration
+
+## Autocompletions
+# Kubernetes
 source <(kubectl completion zsh)
+complete -F __start_kubectl k
+# velero
 source <(velero completion zsh)
 complete -F __start_velero v
-complete -F __start_kubectl k
+# terraform
 complete -o nospace -C /usr/local/bin/terraform terraform
 complete -o nospace -C /usr/local/bin/mc mc
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/lucas/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
-autoload -U +X bashcompinit && bashcompinit
-
-### Example aliases
+## Aliases
+# ls
 alias ll="ls -l"
+# Kubernetes
 alias k="kubectl"
+# Velero
 alias v="velero"
 #Vim and Nvim
 alias vi="vim"
@@ -88,29 +109,5 @@ alias s5="s5cmd"
 alias hk='heroku'
 alias hkapps='heroku apps'
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Color
-if [ -x "$(command -v exa)" ]; then
-    alias ls="exa"
-    alias la="exa --long --all --group"
-fi
-
-### Autocompletions
-# Mysql
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-# Krew
-export PATH="${PATH}:${HOME}/.krew/bin"
-# c++
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-# poetry
-export PATH="$HOME/.poetry/bin:$PATH"
-# Node.Js
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-# Flutter
-export PATH="$PATH:`pwd`/flutter/bin"
-# Curl
-export PATH="/usr/local/opt/curl/bin:$PATH"
+### Load oh-my-zsh
+source $ZSH/oh-my-zsh.sh
