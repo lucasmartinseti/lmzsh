@@ -18,11 +18,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 ```console
 git clone git@gitlab.com:lucasmartins.py/lmzsh.git ~/.config/lmzsh
-```
-
-##### Configure Zsh
-
-```console
 rm -rf ~/.zshrc
 ln -s ~/.config/lmzsh/zshrc ~/.zshrc
 ```
@@ -38,4 +33,4 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 ```console
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 ```
-    Close and open terminal to see changes.
+    Close and open terminal to se changes.
