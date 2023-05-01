@@ -5,7 +5,7 @@
 ###### macOS
 
 ```console
-brew install zsh zsh-completions zsh-syntax-highlighting powerlevel10k exa
+brew install zsh zsh-completions exa
 ```
 
 ##### Install Oh My Zsh
@@ -25,6 +25,12 @@ git clone git@gitlab.com:lucasmartins.py/lmzsh.git ~/.config/lmzsh
 ```console
 rm -rf ~/.zshrc
 ln -s ~/.config/lmzsh/zshrc ~/.zshrc
+```
+
+##### Configure zsh-syntax-highlighting
+
+```console
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 ```
 
 ##### Configure PowerLevel10k theme
