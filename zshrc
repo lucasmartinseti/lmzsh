@@ -41,20 +41,15 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$PATH:`pwd`/flutter/bin"
 # Curl
 export PATH="/usr/local/opt/curl/bin:$PATH"
-
-### Config Theme
-
-ZSH_THEME="powerlevel10k/powerlevel10k"
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-# Color
-if [ -x "$(command -v exa)" ]; then
-    alias ls="exa"
-    alias la="exa --long --all --group"
-fi
+# Ruby
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 ### Config Plugins
-plugins=( git tmux vscode vagrant node npm poetry docker docker-compose brew aws terraform helm ansible zsh-syntax-highlighting )
+plugins=( macos git tmux vscode vagrant node npm poetry docker docker-compose brew aws terraform helm ansible zsh-syntax-highlighting zsh-colorls )
 
+### Config Theme
+ZSH_THEME="powerlevel10k/powerlevel10k"
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #### User configuration
 
@@ -72,8 +67,6 @@ complete -o nospace -C /usr/local/bin/mc mc
 HEROKU_AC_ZSH_SETUP_PATH=/Users/lucas/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
 ## Aliases
-# ls
-alias ll="ls -l"
 # Kubernetes
 alias k="kubectl"
 # Velero
@@ -109,8 +102,6 @@ alias s5="s5cmd"
 alias hk='heroku'
 alias hkapps='heroku apps'
 
-### Load oh-my-zsh
+### Load
 source $ZSH/oh-my-zsh.sh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source $(dirname $(gem which colorls))/tab_complete.sh
