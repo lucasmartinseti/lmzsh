@@ -5,7 +5,8 @@
 ###### macOS
 
 ```console
-brew install zsh zsh-completions exa
+brew install zsh zsh-completions ruby rbenv
+gem install colorls
 ```
 
 ##### Install Oh My Zsh
