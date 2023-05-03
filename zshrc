@@ -20,7 +20,9 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # homebrew
 export HOMEBREW_PREFIX=$(brew --prefix)
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export HOMEBREW_CELLAR=$(brew --cellar)
+export HOMEBREW_REPOSITORY=$(brew --repo)
+export PATH="$HOMEBREW_PREFIX/bin:$PATH"
 # pipenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -28,21 +30,16 @@ eval "$(pyenv init -)"
 export PIPENV_VENV_IN_PROJECT=1
 export PIPENV_SHELL=zsh
 # Mysql
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-# Krew
-export PATH="${PATH}:${HOME}/.krew/bin"
-# c++
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-# poetry
-export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"
+# llvm
+export PATH="$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
 # Node.Js
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 # Flutter
 export PATH="$PATH:`pwd`/flutter/bin"
 # Curl
-export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
 # Ruby
 export PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
 
