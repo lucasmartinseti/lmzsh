@@ -18,6 +18,8 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ### Config PATH
 
+# homebrew
+export HOMEBREW_PREFIX=$(brew --prefix)
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # pipenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -42,7 +44,7 @@ export PATH="$PATH:`pwd`/flutter/bin"
 # Curl
 export PATH="/usr/local/opt/curl/bin:$PATH"
 # Ruby
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
 
 ### Config Plugins
 plugins=( macos git tmux vscode vagrant node npm poetry docker docker-compose brew aws terraform helm ansible zsh-syntax-highlighting zsh-colorls )
