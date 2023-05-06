@@ -10,6 +10,9 @@ autoload -Uz compinit
 compinit
 autoload -U +X bashcompinit && bashcompinit
 
+fpath=( ~/.zshfn "${fpath[@]}" )
+autoload -Uz $fpath[1]/*(.:t)
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -18,6 +21,8 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ### Config PATH
 
+# Path scripts lmzsh
+export PATH="$HOME/.config/lmzsh/bin:$PATH"
 # homebrew
 export HOMEBREW_PREFIX=$(brew --prefix)
 export HOMEBREW_CELLAR=$(brew --cellar)

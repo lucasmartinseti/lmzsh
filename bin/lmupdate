@@ -1,0 +1,15 @@
+# autoload
+check_upadate(){
+    echo "Checking for updates."
+    echo ""
+    echo "Update lmtmux "
+    cd ~/.config/lmtmux/
+    git pull
+    echo "Update lmzsh "
+    cd ~/.config/lmzsh/
+    git pull
+    echo "Update nvim "
+    git pull
+    cd ~
+}
+check_upadate
