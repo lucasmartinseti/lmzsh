@@ -19,7 +19,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 ```console
 git clone git@gitlab.com:lucasmartins.py/lmzsh.git ~/.config/lmzsh
-rm -rf ~/.zshrc
 ln -s -f ~/.config/lmzsh/zshrc ~/.zshrc
 ln -s -f ~/.config/lmzsh/zsh-colorls ~/.oh-my-zsh/custom/plugins/zsh-colorls
 ln -s -f ~/.config/lmzsh/bin ~/.zshfn
