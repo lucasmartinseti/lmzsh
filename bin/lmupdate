@@ -1,15 +1,29 @@
 # autoload
 check_upadate(){
-    echo "Checking for updates."
-    echo ""
-    echo "Update lmtmux "
+    PWD=$(pwd)
+    echo -e  "\033[0;32m Checking for updates in lmstack.\033[0m"
+    echo -e ""
+    echo -e "  💻  Update lmtmux  💻  "
+    echo -e ""
     cd ~/.config/lmtmux/
-    git pull
-    echo "Update lmzsh "
+    echo -e "\033[0;32m  $(git pull)\033[0m"
+    echo -e ""
+    echo -e ""
+    echo -e "  💲  Update lmzsh  💲  "
+    echo -e ""
     cd ~/.config/lmzsh/
-    git pull
-    echo "Update nvim "
-    git pull
-    cd ~
+    echo -e "\033[0;32m  $(git pull)\033[0m"
+    source ~/.zshrc
+    echo -e ""
+    echo -e ""
+    echo -e "  📂  Update nvim  📂  "
+    echo -e ""
+    cd ~/.config/nvim/
+    echo -e "\033[0;32m  $(git pull)\033[0m"
+    nvim -c 'PlugInstall' -c 'qa!'
+    nvim -c 'UpdateRemovePlugin' -c 'qa!'
+    echo -e ""
+    echo -e ""
+    cd $PWD
 }
 check_upadate
