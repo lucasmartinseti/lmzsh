@@ -7,12 +7,21 @@ check_upadate(){
     echo -e ""
     cd ~/.config/lmtmux/
     echo -e "\033[0;32m  $(git pull)\033[0m"
+    echo -e "\033[0;32m  $(git branch)\033[0m"
+    echo -e ""
+    echo -e ""
+    echo -e "  🇫🇷  💻  Update oh-my-tmux  💻 🇫🇷"
+    echo -e ""
+    cd ~/.tmux/
+    echo -e "\033[0;32m  $(git pull)\033[0m"
+    echo -e "\033[0;32m  $(git branch)\033[0m"
     echo -e ""
     echo -e ""
     echo -e "  💲  Update lmzsh  💲  "
     echo -e ""
     cd ~/.config/lmzsh/
     echo -e "\033[0;32m  $(git pull)\033[0m"
+    echo -e "\033[0;32m  $(git branch)\033[0m"
     source ~/.zshrc
     echo -e ""
     echo -e ""
@@ -20,6 +29,7 @@ check_upadate(){
     echo -e ""
     cd ~/.config/nvim/
     echo -e "\033[0;32m  $(git pull)\033[0m"
+    echo -e "\033[0;32m  $(git branch)\033[0m"
     nvim -c 'PlugInstall' -c 'qa!'
     echo -e ""
     echo -e ""
