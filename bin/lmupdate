@@ -21,7 +21,6 @@ check_upadate(){
     cd ~/.config/nvim/
     echo -e "\033[0;32m  $(git pull)\033[0m"
     nvim -c 'PlugInstall' -c 'qa!'
-    nvim -c 'UpdateRemovePlugin' -c 'qa!'
     echo -e ""
     echo -e ""
     cd $PWD
