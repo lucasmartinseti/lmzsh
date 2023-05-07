@@ -16,17 +16,15 @@ autoload -Uz $fpath[1]/*(.:t)
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Disable compinit
-#ZSH_DISABLE_COMPFIX="true"
-
 ### Config PATH
 
 # Path scripts lmzsh
 export PATH="$HOME/.config/lmzsh/bin:$PATH"
 # homebrew
-export HOMEBREW_PREFIX=$(brew --prefix)
-export HOMEBREW_CELLAR=$(brew --cellar)
-export HOMEBREW_REPOSITORY=$(brew --repo)
+command -v brew >/dev/null || export PATH="$(dirname $(which brew)):$PATH"
+command -v brew >/dev/null || export HOMEBREW_PREFIX=$(brew --prefix)
+command -v brew >/dev/null || export HOMEBREW_CELLAR=$(brew --cellar)
+command -v brew >/dev/null || export HOMEBREW_REPOSITORY=$(brew --repo)
 export PATH="$HOMEBREW_PREFIX/bin:$PATH"
 # pipenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -41,8 +39,6 @@ export PATH="$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
 # Node.Js
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-# Flutter
-export PATH="$PATH:`pwd`/flutter/bin"
 # Curl
 export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
 # Ruby
@@ -59,10 +55,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 ## Autocompletions
 # Kubernetes
-source <(kubectl completion zsh)
+command -v kubectl >/dev/null || source <(kubectl completion zsh)
 complete -F __start_kubectl k
 # velero
-source <(velero completion zsh)
+command -v velero >/dev/null || source <(velero completion zsh)
 complete -F __start_velero v
 # terraform
 complete -o nospace -C /usr/local/bin/terraform terraform
@@ -108,4 +104,3 @@ alias hkapps='heroku apps'
 
 ### Load
 source $ZSH/oh-my-zsh.sh
-source $(dirname $(gem which colorls))/tab_complete.sh
