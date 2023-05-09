@@ -55,10 +55,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 ## Autocompletions
 # Kubernetes
-command -v kubectl >/dev/null || source <(kubectl completion zsh)
+source <(kubectl completion zsh)
 complete -F __start_kubectl k
 # velero
-command -v velero >/dev/null || source <(velero completion zsh)
+ source <(velero completion zsh)
 complete -F __start_velero v
 # terraform
 complete -o nospace -C /usr/local/bin/terraform terraform
