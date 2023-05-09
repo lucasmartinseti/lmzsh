@@ -21,10 +21,10 @@ export ZSH="$HOME/.oh-my-zsh"
 # Path scripts lmzsh
 export PATH="$HOME/.config/lmzsh/bin:$PATH"
 # homebrew
-command -v brew >/dev/null || export PATH="$(dirname $(which brew)):$PATH"
-command -v brew >/dev/null || export HOMEBREW_PREFIX=$(brew --prefix)
-command -v brew >/dev/null || export HOMEBREW_CELLAR=$(brew --cellar)
-command -v brew >/dev/null || export HOMEBREW_REPOSITORY=$(brew --repo)
+export PATH="$(dirname $(which brew)):$PATH"
+export HOMEBREW_PREFIX=$(brew --prefix)
+export HOMEBREW_CELLAR=$(brew --cellar)
+export HOMEBREW_REPOSITORY=$(brew --repo)
 export PATH="$HOMEBREW_PREFIX/bin:$PATH"
 # pipenv
 export PYENV_ROOT="$HOME/.pyenv"
