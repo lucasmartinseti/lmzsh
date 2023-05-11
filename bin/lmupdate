@@ -111,7 +111,7 @@ update_nvim() {
 }
 # check_upadate
 check_upadate(){
-    PWD=$(pwd)
+    PWD_DIR=$(pwd)
     update_lmtmux
     lmtmux=$?
     lmtmux_branch=$(git branch --show-current)
@@ -124,7 +124,7 @@ check_upadate(){
     update_nvim
     nvim=$?
     nvim_branch=$(git branch --show-current)
-    cd $PWD
+    cd $PWD_DIR
     echo -e "  $ENDMASAGE"
     echo -e ""
     if [ "$lmtmux" != 1 ]; then
