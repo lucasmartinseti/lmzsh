@@ -25,8 +25,8 @@ export PATH="/opt/homebrew/bin:$PATH"
 export HOMEBREW_PREFIX=$(brew --prefix)
 export HOMEBREW_CELLAR=$(brew --cellar)
 export HOMEBREW_REPOSITORY=$(brew --repo)
-# npm global
-export PATH="$HOME/.local/bin/:$PATH"
+# node
+export PATH="$(dirname $(which node)):$PATH"
 # pipenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -37,16 +37,13 @@ export PIPENV_SHELL=zsh
 export PATH="$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"
 # llvm
 export PATH="$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
-# Node.Js
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 # Curl
 export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
 # Ruby
 export PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
 
 ### Config Plugins
-plugins=( macos git tmux vscode vagrant node npm poetry docker docker-compose brew aws terraform helm ansible zsh-syntax-highlighting zsh-colorls )
+plugins=( macos git tmux vscode vagrant node npm poetry docker docker-compose brew aws terraform helm ansible zsh-syntax-highlighting zsh-colorls zsh-nvm )
 
 ### Config Theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -66,6 +63,10 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 complete -o nospace -C /usr/local/bin/mc mc
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/lucas/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+# NVM (Node Version Manager)
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+export NVM_COMPLETION=true
 
 ## Aliases
 # Kubernetes
