@@ -17,7 +17,7 @@ ENDMASAGE="$GREEN Done!$ENDCOLOR"
 MASSASE_TMUX="$BLUE  💻  Update lmtmux  💻  $ENDCOLOR"
 MESSAGE_HOMYTMUX="$BLUE  🇫🇷  💻  Update oh-my-tmux  💻 🇫🇷 $ENDCOLOR"
 MESSAGE_LMZSH="$BLUE  💲  Update lmzsh  💲  $ENDCOLOR"
-MESSAGE_NVIM="$BLUE  📂  Update nvim  📂  $ENDCOLOR"
+MESSAGE_NVIM="$BLUE  📂  Update user config AstroNvim  📂  $ENDCOLOR"
 
 # update_lmtmux
 update_lmtmux() {
@@ -87,17 +87,17 @@ update_lmzsh() {
 }
 # update nvim
 update_nvim() {
-    if [ -d ~/.config/nvim/ ]; then
+    if [ -d ~/.config/nvim/lua/user ]; then
         echo -e "$HEADER"
         echo -e ""
         echo -e "$MESSAGE_NVIM"
         echo -e ""
-        cd ~/.config/nvim/
+        cd ~/.config/nvim/lua/user/
         nvim_branch=$(git branch --show-current)
         echo -e "$GREEN  $(git pull)$ENDCOLOR"
         echo -e "$GREEN  $(git branch --show-current)$ENDCOLOR"
-        nvim -c 'PlugInstall' -c 'qa!'
-        nvim -c 'PlugClean' -c 'qa!'
+        nvim -c 'Lazy install' -c 'qa!'
+        nvim -c 'Lazy clean' -c 'qa!'
         echo -e ""
         nvim=1
         else
