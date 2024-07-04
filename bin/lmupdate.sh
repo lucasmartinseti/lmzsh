@@ -17,7 +17,7 @@ ENDMASAGE="$GREEN Done!$ENDCOLOR"
 MASSASE_TMUX="$BLUE  💻  Update lmtmux  💻  $ENDCOLOR"
 MESSAGE_HOMYTMUX="$BLUE  🇫🇷  💻  Update oh-my-tmux  💻 🇫🇷 $ENDCOLOR"
 MESSAGE_LMZSH="$BLUE  💲  Update lmzsh  💲  $ENDCOLOR"
-MESSAGE_NVIM="$BLUE  📂  Update user config AstroNvim  📂  $ENDCOLOR"
+MESSAGE_NVIM="$BLUE  📂  Update AstroNvim Config 📂  $ENDCOLOR"
 
 # update_lmtmux
 update_lmtmux() {
@@ -87,7 +87,7 @@ update_lmzsh() {
 }
 # update nvim
 update_nvim() {
-    if [ -d ~/.config/nvim/lua/user ]; then
+    if [ -d ~/.config/nvim ]; then
         echo -e "$HEADER"
         echo -e ""
         echo -e "$MESSAGE_NVIM"
