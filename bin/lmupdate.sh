@@ -92,7 +92,7 @@ update_nvim() {
         echo -e ""
         echo -e "$MESSAGE_NVIM"
         echo -e ""
-        cd ~/.config/nvim/lua/user/
+        cd ~/.config/nvim/
         nvim_branch=$(git branch --show-current)
         echo -e "$GREEN  $(git pull)$ENDCOLOR"
         echo -e "$GREEN  $(git branch --show-current)$ENDCOLOR"
