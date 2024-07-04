@@ -96,8 +96,8 @@ update_nvim() {
         nvim_branch=$(git branch --show-current)
         echo -e "$GREEN  $(git pull)$ENDCOLOR"
         echo -e "$GREEN  $(git branch --show-current)$ENDCOLOR"
-        nvim --headless '+Lazy! update' +qa
-        nvim --headless '+Lazy! clean' +qa
+        nvim --headless "+Lazy! update" +qa
+        nvim --headless "+Lazy! clean" +qa
         echo -e ""
         nvim=1
         else
