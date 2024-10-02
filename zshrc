@@ -42,6 +42,9 @@ export PATH="$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
 export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
 # Ruby
 export PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
+# OpenAI API Key
+export OPENAI_API_KEY=$(gpg --decrypt ./.config/openai/secret.txt.gpg 2>/dev/null)
+
 
 ### Config Plugins
 plugins=( macos git tmux vscode vagrant node npm poetry docker docker-compose brew aws terraform helm ansible zsh-syntax-highlighting zsh-colorls zsh-nvm )
