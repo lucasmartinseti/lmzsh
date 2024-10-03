@@ -47,7 +47,7 @@ export OPENAI_API_KEY=$(gpg --decrypt ./.config/openai/secret.txt.gpg 2>/dev/nul
 
 
 ### Config Plugins
-plugins=( macos git tmux vscode vagrant node npm poetry docker docker-compose brew aws terraform helm ansible zsh-syntax-highlighting zsh-colorls zsh-nvm )
+plugins=( golang macos git tmux vscode vagrant node npm poetry docker docker-compose brew aws terraform helm ansible zsh-syntax-highlighting zsh-colorls zsh-nvm )
 
 ### Config Theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
