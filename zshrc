@@ -42,8 +42,6 @@ export PATH="$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
 export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
 # Ruby
 export PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
-# OpenAI API Key
-export OPENAI_API_KEY=$(gpg --decrypt ./.config/openai/secret.txt.gpg 2>/dev/null)
 
 
 ### Config Plugins
