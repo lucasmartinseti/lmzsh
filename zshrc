@@ -105,6 +105,8 @@ alias s5="s5cmd"
 # Heroku
 alias hk='heroku'
 alias hkapps='heroku apps'
+# gpg
+alias gpgchat='gpg --decrypt ~/.config/openai/secret.txt.gpg'
 
 ### Load
 source $ZSH/oh-my-zsh.sh
