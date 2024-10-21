@@ -38,7 +38,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 
 ##### Configure Zsh
 ```console
-git clone git@gitlab.com:lucasmartins.py/lmzsh.git ~/.config/lmzsh
+git clone https://github.com/lucasmartinseti/lmzsh.git ~/.config/lmzsh
 ln -s -f ~/.config/lmzsh/zshrc ~/.zshrc
 ln -s -f ~/.config/lmzsh/zsh-colorls ~/.oh-my-zsh/custom/plugins/zsh-colorls
 ln -s -f ~/.config/lmzsh/bin ~/.zshfn
