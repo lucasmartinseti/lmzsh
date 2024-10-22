@@ -12,8 +12,19 @@ gem install colorls
 ###### Linux (Debian e Ubuntu)
 
 ```console
-sudo apt install zsh ruby rubenv ruby-dev git
+sudo apt install -y zsh ruby ruby-dev git curl build-essential libssl-dev zlib1g-dev libreadline-dev fontconfig
+sudo gem install colorls
 ```
+
+```console
+wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip
+cd ~/.local/share/fonts
+unzip JetBrainsMono.zip
+rm JetBrainsMono.zip
+fc-cache -fv
+```
+
+
 
 ###### Install all SO
 
@@ -38,7 +49,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 
 ##### Configure Zsh
 ```console
-git clone https://github.com/lucasmartinseti/lmzsh.git ~/.config/lmzsh
+git clone https://gitlab.com/lucasmartinseti/lmzsh.git ~/.config/lmzsh
 ln -s -f ~/.config/lmzsh/zshrc ~/.zshrc
 ln -s -f ~/.config/lmzsh/zsh-colorls ~/.oh-my-zsh/custom/plugins/zsh-colorls
 ln -s -f ~/.config/lmzsh/bin ~/.zshfn

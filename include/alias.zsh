@@ -3,9 +3,6 @@
 alias k="kubectl"
 # Velero
 alias v="velero"
-#Vim and Nvim
-alias vi="vim"
-alias vim="stty stop '' -ixoff; nvim"
 # Tmux
 alias tx="tmux"
 alias txls="tmux ls"

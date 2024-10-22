@@ -13,3 +13,8 @@ export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
 export PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
 # OpenJDK
 export PATH="$HOMEBREW_PREFIX/opt/openjdk/bin:$PATH"
+
+# Alias
+#Vim and Nvim
+alias vi="vim"
+alias vim="stty stop '' -ixoff; nvim"
