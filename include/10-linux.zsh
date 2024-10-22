@@ -6,6 +6,7 @@ export PATH=$PATH:$HOME/.local/share/flatpak/exports/bin
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
 
 # Adicionando homebrew ao PATH
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export HOMEBREW_PREFIX=$(brew --prefix)
 export HOMEBREW_CELLAR=$(brew --cellar)
 export HOMEBREW_REPOSITORY=$(brew --repo)
