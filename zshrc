@@ -29,7 +29,7 @@ if [[ "$(uname -s)" == "Linux" ]]; then
     
     # Includes
     for includes in $PATH_LMZSH/include/*.zsh; do
-      if [[ -f $includes && "$includes" != "$PATH_LMZSH/include/macOS.zsh" ]]; then
+      if [[ -f $includes && "$includes" != "$PATH_LMZSH/include/10-macOS.zsh" ]]; then
         source $includes
       fi
     done
@@ -42,7 +42,7 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
 
     # Includes
     for includes in $PATH_LMZSH/include/*.zsh; do
-      if [[ -f $includes && "$includes" != "$PATH_LMZSH/include/linux.zsh" ]]; then
+      if [[ -f $includes && "$includes" != "$PATH_LMZSH/include/10-linux.zsh" ]]; then
         source $includes
       fi
     done

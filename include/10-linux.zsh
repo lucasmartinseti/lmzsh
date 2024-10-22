@@ -18,6 +18,11 @@ export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/node@20/include"
 # Adicionando zsh-completions ao PATH
 export PATH="$HOMEBREW_PREFIX/share/zsh/site-functions:$PATH"
 
+# nvm completions
+export NVM_DIR="$HOME/.nvm"
+[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
+[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"
+
 # Alias
 #Vim and Nvim
 alias vi="nvim"
