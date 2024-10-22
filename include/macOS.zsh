@@ -3,6 +3,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 export HOMEBREW_PREFIX=$(brew --prefix)
 export HOMEBREW_CELLAR=$(brew --cellar)
 export HOMEBREW_REPOSITORY=$(brew --repo)
+
 # Mysql
 export PATH="$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"
 # llvm

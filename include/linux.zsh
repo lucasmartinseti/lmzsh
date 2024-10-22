@@ -10,6 +10,9 @@ export PATH="/home/linuxbrew/.linuxbrew/opt/node@20/bin:$PATH"
 export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/node@20/lib"
 export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/node@20/include"
 
+# Adicionando zsh-completions ao PATH
+export PATH="/home/linuxbrew/.linuxbrew/share/zsh/site-functions:$PATH"
+
 # Alias
 #Vim and Nvim
 alias vi="nvim"
