@@ -4,6 +4,10 @@ export HOMEBREW_PREFIX=$(brew --prefix)
 export HOMEBREW_CELLAR=$(brew --cellar)
 export HOMEBREW_REPOSITORY=$(brew --repo)
 
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/lucas/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
 # NVM 
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
