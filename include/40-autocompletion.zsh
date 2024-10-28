@@ -2,8 +2,6 @@
 # Kubernetes
 source <(kubectl completion zsh)
 complete -F __start_kubectl k
-# stern
-source <(stern --completion=zsh)
 # velero
  source <(velero completion zsh)
 complete -F __start_velero v

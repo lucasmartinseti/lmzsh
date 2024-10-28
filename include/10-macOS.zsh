@@ -24,6 +24,11 @@ export PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
 # OpenJDK
 export PATH="$HOMEBREW_PREFIX/opt/openjdk/bin:$PATH"
 
+# completion
+# stern
+source <(stern --completion=zsh)
+# colima
+source <(colima completion zsh)
 # Alias
 #Vim and Nvim
 alias vi="vim"
