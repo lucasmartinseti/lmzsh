@@ -11,7 +11,7 @@ Host ghlucas
   IdentityFile ~/.ssh/id_rsa_lucasmartinseti
   IdentitiesOnly yes
 # Configuração para Gitlab ti@omd.com.br
-Host tiomd
+Host gltiomd
   HostName gitlab.com
   User git
   IdentityFile ~/.ssh/id_rsa_ti_omd
