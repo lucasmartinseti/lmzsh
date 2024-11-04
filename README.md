@@ -24,8 +24,6 @@ rm JetBrainsMono.zip
 fc-cache -fv
 ```
 
-
-
 ###### Install all SO
 
 ##### Install Oh My Zsh
@@ -39,6 +37,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ```console
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 ```
+
     Close and open terminal to se changes.
 
 ##### Configure zsh-syntax-highlighting
@@ -49,9 +48,32 @@ git clone https://github.com/lukechilds/zsh-nvm.git ${ZSH_CUSTOM:-~/.oh-my-zsh/c
 ```
 
 ##### Configure Zsh
+
 ```console
 git clone https://gitlab.com/lucasmartinseti/lmzsh.git ~/.config/lmzsh
 ln -s -f ~/.config/lmzsh/zshrc ~/.zshrc
 ln -s -f ~/.config/lmzsh/zsh-colorls ~/.oh-my-zsh/custom/plugins/zsh-colorls
 ln -s -f ~/.config/lmzsh/bin ~/.zshfn
+ln -s -f ~/.config/lmzsh/config_ssh.d/config ~/.ssh/config
+```
+
+##### Create ssh key and config
+
+###### Generate ssh key
+
+```console
+ssh-keygen -t rsa -b 4096 -C "email@example.com" -f ~/.ssh/id_rsa_exemplo
+ssh-add ~/.ssh/id_rsa_exemplo
+```
+
+###### Configure ssh-agent
+
+Include an file ~/.config/lmzsh/config_ssh.d/config with:
+
+```console
+Host glexemplo
+  HostName gitlab.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsa_exemplo
 ```
