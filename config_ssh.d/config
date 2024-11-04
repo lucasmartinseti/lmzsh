@@ -1,3 +1,5 @@
+Include /Users/lucas/.colima/ssh_config
+
 # Configuração para Gitlab i@lucasmartins.eti.br
 Host gllucas
   HostName gitlab.com
