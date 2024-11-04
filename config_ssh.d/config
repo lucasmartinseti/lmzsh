@@ -1,6 +1,18 @@
-# Configuração para Gitlab ti@omd.com.br
-Host gitlab.com
+# Configuração para Gitlab i@lucasmartins.eti.br
+Host gllucas
   HostName gitlab.com
   User git
-  IdentityFile ~/.ssh/id_rsa_gitlab_ti
+  IdentityFile ~/.ssh/id_rsa_lucasmartinseti
+  IdentitiesOnly yes
+# Configuração para Github i@lucasmartins.eti.br
+Host ghlucas
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_lucasmartinseti
+  IdentitiesOnly yes
+# Configuração para Gitlab ti@omd.com.br
+Host tiomd
+  HostName gitlab.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_ti_omd
   IdentitiesOnly yes
