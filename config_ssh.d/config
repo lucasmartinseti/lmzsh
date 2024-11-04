@@ -1,0 +1,6 @@
+# Configuração para Gitlab ti@omd.com.br
+Host gitlab.com
+  HostName gitlab.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_gitlab_ti
+  IdentitiesOnly yes
