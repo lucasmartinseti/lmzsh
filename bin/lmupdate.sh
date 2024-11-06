@@ -28,7 +28,7 @@ update_lmtmux() {
         echo -e ""
         cd ~/.config/lmtmux/
         lmtmux_branch=$(git branch --show-current)
-        echo -e "$GREEN  $(git pull)$ENDCOLOR"
+        echo -e "$GREEN  $(git pull origin $lmtmux_branch)$ENDCOLOR"
         echo -e "$GREEN  $lmtmux_branch$ENDCOLOR"
         lmtmux=1
         else
@@ -49,8 +49,8 @@ update_ohmytmux() {
         echo -e ""
         cd ~/.tmux/
         ohmytmux_branch=$(git branch --show-current)
-        echo -e "$GREEN  $(git pull)$ENDCOLOR"
-        echo -e "$GREEN  $(git branch --show-current)$ENDCOLOR"
+        echo -e "$GREEN  $(git pull origin $ohmytmux_branch)$ENDCOLOR"
+        echo -e "$GREEN  $ohmytmux_branch$ENDCOLOR"
         echo -e ""
         ohmytmux=1
         else
@@ -71,8 +71,8 @@ update_lmzsh() {
         echo -e ""
         cd ~/.config/lmzsh/
         lmzsh_branch=$(git branch --show-current)
-        echo -e "$GREEN  $(git pull)$ENDCOLOR"
-        echo -e "$GREEN  $(git branch --show-current)$ENDCOLOR"
+        echo -e "$GREEN  $(git pull origin $lmzsh_branch)$ENDCOLOR"
+        echo -e "$GREEN  $lmzsh_branch$ENDCOLOR"
         echo -e ""
         lmzsh=1
         else
@@ -94,8 +94,8 @@ update_nvim() {
         echo -e ""
         cd ~/.config/nvim/
         nvim_branch=$(git branch --show-current)
-        echo -e "$GREEN  $(git pull)$ENDCOLOR"
-        echo -e "$GREEN  $(git branch --show-current)$ENDCOLOR"
+        echo -e "$GREEN  $(git pull origin $nvim_branch)$ENDCOLOR"
+        echo -e "$GREEN  $nvim_branch$ENDCOLOR"
         nvim --headless "+Lazy! update" +qa
         nvim --headless "+Lazy! clean" +qa
         echo -e ""
@@ -114,16 +114,16 @@ check_upadate(){
     PWD_DIR=$(pwd)
     update_lmtmux
     lmtmux=$?
-    lmtmux_branch=$(git branch --show-current)
+    #lmtmux_branch=$(git branch --show-current)
     update_ohmytmux
     ohmytmux=$?
-    ohmytmux_bramch=$(git branch --show-current)
+    #ohmytmux_bramch=$(git branch --show-current)
     update_lmzsh
     lmzsh=$?
-    lmzsh_branch=$(git branch --show-current)
+    #lmzsh_branch=$(git branch --show-current)
     update_nvim
     nvim=$?
-    nvim_branch=$(git branch --show-current)
+    #nvim_branch=$(git branch --show-current)
     cd $PWD_DIR
     echo -e "  $ENDMASAGE"
     echo -e ""
