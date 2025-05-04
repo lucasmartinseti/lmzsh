@@ -32,4 +32,5 @@ alias hk='heroku'
 alias hkapps='heroku apps'
 # gpg
 alias gpgchat='gpg --decrypt ~/.config/openai/secret.txt.gpg'
-
+# AI
+alias ai='aichat'
