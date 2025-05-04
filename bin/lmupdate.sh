@@ -15,9 +15,9 @@ ENDCOLOR="\033[0m"
 HEADER="$GREEN Checking for updates in lmstack...$ENDCOLOR"
 ENDMASAGE="$GREEN Done!$ENDCOLOR"
 MASSASE_TMUX="$BLUE  💻  Update lmtmux  💻  $ENDCOLOR"
-MESSAGE_HOMYTMUX="$BLUE  🇫🇷  💻  Update oh-my-tmux  💻 🇫🇷 $ENDCOLOR"
+MESSAGE_HOMYTMUX="$BLUE  💻  Update oh-my-tmux  💻  $ENDCOLOR"
 MESSAGE_LMZSH="$BLUE  💲  Update lmzsh  💲  $ENDCOLOR"
-MESSAGE_NVIM="$BLUE  📂  Update AstroNvim Config 📂  $ENDCOLOR"
+MESSAGE_NVIM="$BLUE  📂  Update AstroNvim Config  📂  $ENDCOLOR"
 
 # update_lmtmux
 update_lmtmux() {
@@ -109,6 +109,29 @@ update_nvim() {
     clear
     return "$nvim"
 }
+# update zed configuration
+update_zed() {
+    if [ -d ~/.config/lmzed ]; then
+        echo -e "$HEADER"
+        echo -e ""
+        echo -e "$MESSAGE_ZED"
+        echo -e ""
+        cd ~/.config/lmzed/
+        zed_branch=$(git branch --show-current)
+        echo -e "$GREEN  $(git pull origin $zed_branch)$ENDCOLOR"
+        echo -e "$GREEN  $zed_branch$ENDCOLOR"
+        echo -e ""
+        zed=1
+        else
+            echo -e ""
+            echo -e "$RED zed is not installed $ENDCOLOR"
+            echo -e ""
+            zed=0
+    fi
+    clear
+    return "$zed"
+}
+
 # check_upadate
 check_upadate(){
     PWD_DIR=$(pwd)
@@ -124,6 +147,9 @@ check_upadate(){
     update_nvim
     nvim=$?
     #nvim_branch=$(git branch --show-current)
+    update_lmzed
+    lmzed=$?
+    #lmzed_branch=$(git branch --show-current)
     cd $PWD_DIR
     echo -e "  $ENDMASAGE"
     echo -e ""
@@ -153,6 +179,13 @@ check_upadate(){
         echo -e ""
         else
             echo -e "$MESSAGE_NVIM ✅ $nvim_branch $ENDCOLOR"
+            echo -e ""
+    fi
+    if [ "$lmzed" != 1 ]; then
+        echo -e "$MESSAGE_LMZED ❌$ENDCOLOR"
+        echo -e ""
+        else
+            echo -e "$MESSAGE_LMZED ✅ $lmzed_branch $ENDCOLOR"
             echo -e ""
     fi
     return "$?"
