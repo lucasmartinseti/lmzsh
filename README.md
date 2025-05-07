@@ -55,6 +55,7 @@ ln -s -f ~/.config/lmzsh/zshrc ~/.zshrc
 ln -s -f ~/.config/lmzsh/zsh-colorls ~/.oh-my-zsh/custom/plugins/zsh-colorls
 ln -s -f ~/.config/lmzsh/bin ~/.zshfn
 ln -s -f ~/.config/lmzsh/config_ssh.d/config ~/.ssh/config
+curl -L "https://gitlab.com/usuario/repositorio/-/raw/main/lmstack" -o ~/.config/lmzsh/bin/lmstack
 ```
 
 ##### Create ssh key and config
