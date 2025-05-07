@@ -29,6 +29,9 @@ export PATH="$HOMEBREW_PREFIX/opt/openjdk/bin:$PATH"
 source <(stern --completion=zsh)
 # colima
 source <(colima completion zsh)
+# Gcloud autocomplete setup
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
 # Alias
 #Vim and Nvim
 alias vi="vim"
