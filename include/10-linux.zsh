@@ -24,6 +24,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
 [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"
 
+# Add local bin to PATH
+export PATH=$HOME/.local/bin:$PATH >> ~/.zshrc
+
 # Alias
 #Vim and Nvim
 alias vi="nvim"
