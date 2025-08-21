@@ -1,6 +1,6 @@
 # Ignore bin/*
-bin/*
-!bin/.gitkeep
+#bin/*
+#!bin/.gitkeep
 
 # Ignore config_ssh.d/*
 config_ssh.d/*
