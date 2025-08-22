@@ -20,7 +20,7 @@ export PATH="$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
 # Curl
 export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
 # Ruby
-export PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
+export PATH="$HOME/.gem/ruby/3.4.0/bin:$PATH"
 # OpenJDK
 export PATH="$HOMEBREW_PREFIX/opt/openjdk/bin:$PATH"
 
