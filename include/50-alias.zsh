@@ -36,3 +36,5 @@ alias gpgchat='gpg --decrypt ~/.config/openai/secret.txt.gpg'
 alias ai='aichat'
 # DBeaver
 alias lmdb='source ~/.config/lmzsh/bin/dbeaver-startup.sh'
+# Zed
+alias lmzed='source ~/.config/lmzsh/bin/zed-statup.sh'
