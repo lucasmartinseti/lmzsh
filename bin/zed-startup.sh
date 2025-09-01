@@ -16,7 +16,7 @@ echo "Retornado para o diretório original: $(pwd)"
 
 echo "Iniciando Zed em modo silencioso..."
 # Inicia o Zed em background e captura o PID
-nohup /Applications/Zed.app/Contents/MacOS/zed > /dev/null 2>&1 &
+nohup /opt/homebrew/bin/zed > /dev/null 2>&1 &
 ZED_PID=$!
 
 echo "Zed iniciado com PID: $ZED_PID"
