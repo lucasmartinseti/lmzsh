@@ -6,42 +6,73 @@ CONFIG_DIR="/Users/lucas/.config/lmzed"
 # Captura o diretório corrente onde o script foi executado
 ORIGINAL_DIR="$(pwd)"
 
-echo "Fazendo git pull das configurações do Zed..."
+# Captura todos os parâmetros passados para o script
+ZED_PARAMS="$@"
+
+# Cores para output
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+echo ""
+
+# Git pull
+echo -e "${YELLOW}📥 Fazendo git pull das configurações do Zed...${NC}"
 cd "$CONFIG_DIR"
 git pull origin main
 
 # Retorna para o diretório original após o git pull
 cd "$ORIGINAL_DIR"
-echo "Retornado para o diretório original: $(pwd)"
+echo ""
 
-echo "Iniciando Zed em modo silencioso..."
-# Inicia o Zed em background e captura o PID
-nohup /opt/homebrew/bin/zed > /dev/null 2>&1 &
-ZED_PID=$!
+# Verifica se o Zed já está rodando
+if ps aux | grep "/Applications/Zed.app/Contents/MacOS/zed" | grep -v "crash-handler" | grep -v grep > /dev/null 2>&1; then
+    echo -e "${YELLOW}⚠️  Zed já está em execução. Abrindo nova janela...${NC}"
+else
+    echo -e "${BLUE}🚀 Iniciando Zed...${NC}"
+fi
 
-echo "Zed iniciado com PID: $ZED_PID"
-echo "Terminal liberado. Zed está rodando em background."
+# Inicia o Zed com os parâmetros fornecidos (abrirá nova janela se já estiver rodando)
+if [ -n "$ZED_PARAMS" ]; then
+#    echo -e "${BLUE}📂 Abrindo Zed com parâmetros: $ZED_PARAMS${NC}"
+    /Applications/Zed.app/Contents/MacOS/zed $ZED_PARAMS > /dev/null 2>&1 &
+else
+    /Applications/Zed.app/Contents/MacOS/zed > /dev/null 2>&1 &
+fi
+
+echo -e "${GREEN}✓ Zed iniciado!${NC}"
+echo ""
+
+# Aguarda um momento para o Zed inicializar completamente
+sleep 2
 
 # Monitora o processo em background
 (
-    while kill -0 $ZED_PID 2>/dev/null; do
+    # Monitora usando ps para capturar apenas o processo principal do Zed
+    # Exclui o crash-handler e grep da busca
+    while ps aux | grep "/Applications/Zed.app/Contents/MacOS/zed" | grep -v "crash-handler" | grep -v grep > /dev/null 2>&1; do
         sleep 10
     done
 
-    echo "Zed foi fechado, fazendo git push das configurações..."
+    echo ""
+    echo -e "${YELLOW}🔄 Zed foi fechado, sincronizando configurações...${NC}"
     cd "$CONFIG_DIR"
-    git add .
-    if ! git diff --staged --quiet; then
+
+    # Verifica se há mudanças
+    if [[ -n $(git status -s) ]]; then
+        git add .
         git commit -m "Auto-commit Zed config: $(date '+%Y-%m-%d %H:%M:%S')"
         git push origin main
-        echo "Git push concluído!"
+        echo -e "${GREEN}✓ Configurações sincronizadas com sucesso!${NC}"
     else
-        echo "Nenhuma alteração nas configurações para commitar."
+        echo -e "${BLUE}ℹ️  Nenhuma alteração nas configurações para sincronizar.${NC}"
     fi
 
     # Retorna para o diretório original após o git push
     cd "$ORIGINAL_DIR"
-    echo "Retornado para o diretório original após git push: $(pwd)"
 ) &
 
-echo "Script finalizado. Zed e monitoramento rodando em background."
+# Captura o PID do processo de monitoramento
+MONITOR_PID=$!
+echo -e "${BLUE}ℹ️  Processo de monitoramento PID: $MONITOR_PID${NC}"
