@@ -4,6 +4,9 @@
 # Captura o diretório corrente onde o script foi executado
 ORIGINAL_DIR="$(pwd)"
 
+# Captura o diretório home
+HOME_DIR="$HOME"
+
 # Captura todos os parâmetros passados para o script
 ZED_PARAMS="$@"
 
@@ -20,8 +23,11 @@ OS="$(uname)"
 
 if [ "$OS" = "Linux" ]; then
     # Configuração para Linux
-    CONFIG_DIR="~/.config/zed"
+    CONFIG_DIR="$HOME_DIR/.config/lmzed"
     ZED_EXECUTABLE="zed" # Assumindo que 'zed' está no PATH
+
+    echo -e "${BLUE} $OS"
+    echo
 
     # Git pull
     echo -e "${YELLOW}📥 Fazendo git pull das configurações do Zed...${NC}"
@@ -82,9 +88,11 @@ if [ "$OS" = "Linux" ]; then
 
 elif [ "$OS" = "Darwin" ]; then
     # Configuração para macOS
-    CONFIG_DIR="~/.config/lmzed"
+    CONFIG_DIR="$HOME_DIR/.config/lmzed"
     ZED_EXECUTABLE="/Applications/Zed.app/Contents/MacOS/zed"
 
+    echo -e "${BLUE} $OS"
+    echo
     # Git pull
     echo -e "${YELLOW}📥 Fazendo git pull das configurações do Zed...${NC}"
     cd "$CONFIG_DIR"
