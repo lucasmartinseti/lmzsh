@@ -6,3 +6,5 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 export PIPENV_VENV_IN_PROJECT=1
 export PIPENV_SHELL=zsh
+# kubectl
+export KUBECONFIG="$(for f in "$HOME"/.kube/*(N.); do printf '%s:' "$f"; done | sed 's/:$//')")"
