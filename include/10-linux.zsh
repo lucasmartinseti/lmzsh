@@ -19,6 +19,9 @@ export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/node@20/include"
 # Adicionando zsh-completions ao PATH
 export PATH="$HOMEBREW_PREFIX/share/zsh/site-functions:$PATH"
 
+# Adicionando mysql ao PATH
+export PATH="$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"
+
 # nvm completions
 export NVM_DIR="$HOME/.nvm"
 [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
