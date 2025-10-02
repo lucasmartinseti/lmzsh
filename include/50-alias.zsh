@@ -38,3 +38,5 @@ alias ai='aichat'
 alias dbeaver='source ~/.config/lmzsh/bin/dbeaver-startup.sh'
 # Zed
 alias zed='source ~/.config/lmzsh/bin/zed-startup.sh'
+# Codex
+alias cx='codex'
