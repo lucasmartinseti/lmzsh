@@ -40,3 +40,7 @@ alias dbeaver='source ~/.config/lmzsh/bin/dbeaver-startup.sh'
 alias zed='source ~/.config/lmzsh/bin/zed-startup.sh'
 # Codex
 alias cx='codex'
+# CloudFlare Warp
+alias cfup='warp-cli connect'
+alias cfdown='warp-cli disconnect'
+alias cf='warp-cli status'
