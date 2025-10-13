@@ -44,3 +44,5 @@ alias cx='codex'
 alias cfup='warp-cli connect'
 alias cfdown='warp-cli disconnect'
 alias cf='warp-cli status'
+# Winbox
+alias winBox='winBox > /dev/null 2>&1 &'
