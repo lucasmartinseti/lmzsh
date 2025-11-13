@@ -36,3 +36,4 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/compl
 #Vim and Nvim
 alias vi="vim"
 alias vim="stty stop '' -ixoff; nvim"
+alias cleanmac="~/.config/lmzsh/bin/macos-cleanup.sh"
