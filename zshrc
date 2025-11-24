@@ -10,8 +10,8 @@ autoload -Uz compinit
 compinit
 autoload -U +X bashcompinit && bashcompinit
 
-fpath=( ~/.zshfn "${fpath[@]}" )
-autoload -Uz $fpath[1]/*(.:t)
+#fpath=( ~/.zshfn "${fpath[@]}" )
+#autoload -Uz $fpath[1]/*(.:t)
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
