@@ -52,6 +52,8 @@ if [ "$OS" = "Linux" ]; then
         $ZED_EXECUTABLE > /dev/null 2>&1 &
     fi
 
+    ZED_PID=$!
+    echo -e "${BLUE}ℹ️  PID do Zed: $ZED_PID${NC}"
     echo -e "${GREEN}✓ Zed iniciado!${NC}"
     echo ""
 
@@ -60,7 +62,7 @@ if [ "$OS" = "Linux" ]; then
 
     # Monitora o processo em background
     (
-        while pgrep -x "zed" > /dev/null; do
+        while kill -0 "$ZED_PID" 2>/dev/null || pgrep -f "dev\\.zed\\.Zed|[ /](zed|zed-editor)( |$)" > /dev/null 2>&1; do
             sleep 10
         done
 
@@ -116,6 +118,8 @@ elif [ "$OS" = "Darwin" ]; then
         $ZED_EXECUTABLE > /dev/null 2>&1 &
     fi
 
+    ZED_PID=$!
+    echo -e "${BLUE}ℹ️  PID do Zed: $ZED_PID${NC}"
     echo -e "${GREEN}✓ Zed iniciado!${NC}"
     echo ""
 
@@ -124,7 +128,7 @@ elif [ "$OS" = "Darwin" ]; then
 
     # Monitora o processo em background
     (
-        while ps aux | grep "$ZED_EXECUTABLE" | grep -v "crash-handler" | grep -v grep > /dev/null 2>&1; do
+        while kill -0 "$ZED_PID" 2>/dev/null || pgrep -f "$ZED_EXECUTABLE" | grep -v "crash-handler" > /dev/null 2>&1; do
             sleep 10
         done
 
