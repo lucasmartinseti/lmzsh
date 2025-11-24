@@ -2,6 +2,8 @@
 #bin/*
 #!bin/.gitkeep
 
+# Binario lmstack
+bin/lmstack
 # Ignore config_ssh.d/*
 config_ssh.d/*
 !config_ssh.d/.gitkeep
