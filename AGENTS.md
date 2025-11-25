@@ -9,12 +9,33 @@ O propósito é garantir **qualidade, consistência, escalabilidade e manutenibi
 
 ## 🧱 Estrutura Recomendada do Projeto
 
+Arquitetura completa (melhor prática de mercado para CLIs ou automações médias/grandes):
 ```
-.              
-├── docs/
-├── src/
+.
+├── bin/              # entrypoints finos (invocam funções de src/)
+├── src/              # lógica de negócio
+│   ├── main.sh       # orquestração principal
+│   ├── config.sh     # carregamento/validação de configs
+│   ├── lib/          # helpers genéricos (log, parse, retry, fs)
+│   └── modules/      # domínios específicos (opcional)
 ├── tests/
+│   ├── unit/         # funções puras
+│   └── integration/  # fluxos completos, mocks via PATH
+├── docs/             # guias, ADRs curtos, exemplos de uso
+├── examples/         # snippets de consumo da CLI/funções
+├── scripts/          # utilitários de dev (lint, release)
+├── tmp/              # artefatos temporários (gitignored)
+├── .env.example      # variáveis esperadas
 ├── AGENT.md
+└── README.md
+```
+
+Minimal (para scripts pequenos):
+```
+.
+├── bin/
+├── src/
+├── tests/      # opcional mas recomendável
 └── README.md
 ```
 
@@ -52,7 +73,9 @@ O propósito é garantir **qualidade, consistência, escalabilidade e manutenibi
 - Logging com níveis (info/warn/error) e cores opcionais; permita `LOG_LEVEL` e saída para stderr.
 - Formatação: indentação 2 espaços, sem tabs; use `[[ ... ]]` e variáveis entre `{}`.
 - Portabilidade: shebang `#!/usr/bin/env bash`, evite dependências externas se houver alternativa POSIX.
-- Evite duplicação criando libs em `src/` e compartilhando via `source`.
+- Evite duplicação criando libs em `src/lib` e compartilhando via `source`.
+- Limpe `tmp/` automaticamente no `trap`; nunca escreva em `/tmp` sem `mktemp`.
+- Para downloads externos, valide integridade (checksum/sha) e pin de versão.
 
 ---
 
@@ -71,6 +94,7 @@ O propósito é garantir **qualidade, consistência, escalabilidade e manutenibi
   shellspec
   ```
 - Simule entradas com fixtures e mocks de comandos (`PATH` temporário com wrappers).
+- Em integração, prefira ambientes efêmeros e verificação de efeitos observáveis (arquivos criados, stdout/stderr, códigos de saída).
 
 ---
 
@@ -80,6 +104,7 @@ O propósito é garantir **qualidade, consistência, escalabilidade e manutenibi
 - Use defaults seguros: `${VAR:-valor}`; para atribuir default: `${VAR:=valor}`.
 - Centralize carregamento em `src/config.sh` e documente variáveis suportadas.
 - Valide configs na inicialização e falhe cedo com mensagem clara.
+- Permita `--config <arquivo>` para overrides locais; mantenha `.env.example` atualizado.
 
 ---
 
@@ -89,6 +114,7 @@ O propósito é garantir **qualidade, consistência, escalabilidade e manutenibi
 - Limite paralelismo por CPU (`nproc`) e I/O; evite *fork bombs*.
 - Use `mktemp` para diretórios/arquivos e limpe no `trap`.
 - Meça com `time`, `hyperfine` ou contadores simples para hotspots.
+- Proteja seções críticas com lockfiles (`flock` ou `ln`), incluindo cleanup no `trap`.
 
 ---
 
@@ -97,6 +123,7 @@ O propósito é garantir **qualidade, consistência, escalabilidade e manutenibi
 - Scripts versionados via git com tags semânticas (`vMAJOR.MINOR.PATCH`).
 - Embuta `APP_VERSION` e exponha `--version`.
 - Gere changelog curto por release (`git log --oneline <tag>..HEAD`).
+- Para CLIs publicadas, automatize release (tag + checksum + changelog) via `scripts/release.sh`.
 
 ---
 
@@ -118,6 +145,7 @@ O propósito é garantir **qualidade, consistência, escalabilidade e manutenibi
 | Docs | `mdbook` ou `mkdocs` | Documentação |
 | Config | `dotenv` pattern (`.env`) | Parametrização |
 | Logs | Helpers próprios (`log_info`, `log_warn`) ou módulos do `bash-oo-framework` | Observabilidade |
+| Release | `scripts/release.sh` (caseiro) | Tag, changelog, checksum |
 
 ---
 
