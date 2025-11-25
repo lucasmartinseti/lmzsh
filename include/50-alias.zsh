@@ -35,9 +35,9 @@ alias gpgchat='gpg --decrypt ~/.config/openai/secret.txt.gpg'
 # AI
 alias ai='aichat'
 # DBeaver
-alias dbeaver='source ~/.config/lmzsh/bin/dbeaver-startup.sh'
+alias lmdbeaver='source ~/.config/lmzsh/bin/dbeaver-startup.sh'
 # Zed
-alias zed='source ~/.config/lmzsh/bin/zed-startup.sh'
+alias lmzed='source ~/.config/lmzsh/bin/zed-startup.sh'
 # Codex
 alias cx='codex'
 # CloudFlare Warp
