@@ -123,7 +123,7 @@ O propósito é garantir **qualidade, consistência, escalabilidade e manutenibi
 
 ## 🧭 Ferramentas de Apoio ao Desenvolvimento
 
-- **basic-memory**: memória de longo prazo para registrar decisões, trade-offs e contexto de tarefas; use sempre que houver modificação estrutural e documente decisões técnicas, padrões de arquitetura, migrações e motivos de mudanças; crie notas por feature/bug e atualize ao encerrar; se não existir, crie um projeto no basic-memory com o mesmo nome do projeto que esta trabalhando e na pasta ~/basic-memory/.
+- **basic-memory**: memória de longo prazo para registrar decisões, trade-offs e contexto de tarefas; use sempre que houver modificação estrutural e documente decisões técnicas, padrões de arquitetura, migrações e motivos de mudanças; crie notas por feature/bug e atualize ao encerrar; se não existir, crie um projeto no basic-memory com o mesmo nome do projeto que esta trabalhando e na pasta ~/.basic-memory/storage/.
 - **context7**: documentação atualizada em texto simples; use para buscar padrões do repositório, contextualizar decisões e lembrar contratos, modelos e APIs; consulte APIs/libs antes de adicionar dependências; use `mode=code` para referências e `mode=info` para guias conceituais.
 - **octocode**: pesquisa em repositórios GitHub; inicie com `match="path"` para localizar arquivos e leia com `githubGetFileContent`; use para buscar melhores práticas, implementações idiomáticas Go e exemplos reais de padrões de projeto.
 
