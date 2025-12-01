@@ -55,6 +55,54 @@ git_sync_repo() {
     cd "$ORIGINAL_DIR"
 }
 
+update_basic_memory_config_paths() {
+    local target_prefix="$1"
+    local config_file="$BASIC_MEMORY_DIR/config.json"
+
+    if [ ! -f "$config_file" ]; then
+        echo -e "${BLUE}ℹ️  Arquivo de config do basic-memory não encontrado em $config_file, pulando ajuste de caminhos.${NC}"
+        return
+    fi
+
+    if ! command -v jq > /dev/null 2>&1; then
+        echo -e "${YELLOW}⚠️  jq não encontrado, não foi possível ajustar caminhos do basic-memory.${NC}"
+        return
+    fi
+
+    local user_name desired_home old_home old_users tmp_file
+    user_name="$(basename "$HOME_DIR")"
+    desired_home="${target_prefix%/}/${user_name}"
+    old_home="/home/${user_name}"
+    old_users="/Users/${user_name}"
+    tmp_file="$(mktemp "${config_file}.XXXX")"
+
+    if jq \
+        --arg old_home "$old_home" \
+        --arg old_users "$old_users" \
+        --arg desired_home "$desired_home" \
+        '.projects |= (with_entries(
+            if (.value|type) == "string" then
+                .value |= (
+                    if startswith($old_home) then $desired_home + (ltrimstr($old_home) | sub("^/"; "/"))
+                    elif startswith($old_users) then $desired_home + (ltrimstr($old_users) | sub("^/"; "/"))
+                    else .
+                    end
+                )
+            else . end
+        ))' "$config_file" > "$tmp_file"; then
+        if cmp -s "$config_file" "$tmp_file"; then
+            echo -e "${BLUE}ℹ️  Caminhos do basic-memory já estão ajustados.${NC}"
+            rm -f "$tmp_file"
+        else
+            mv "$tmp_file" "$config_file"
+            echo -e "${GREEN}✓ Caminhos do basic-memory ajustados para ${target_prefix}${NC}"
+        fi
+    else
+        echo -e "${YELLOW}⚠️  Falha ao ajustar caminhos do basic-memory.${NC}"
+        rm -f "$tmp_file"
+    fi
+}
+
 echo ""
 
 # Verifica o sistema operacional
@@ -70,6 +118,7 @@ if [ "$OS" = "Linux" ]; then
 
     git_pull_repo "$CONFIG_DIR" "config do Zed"
     git_pull_repo "$BASIC_MEMORY_DIR" "basic-memory"
+    update_basic_memory_config_paths "/home/"
 
     # Retorna para o diretório original após o git pull
     echo ""
@@ -122,6 +171,7 @@ elif [ "$OS" = "Darwin" ]; then
 
     git_pull_repo "$CONFIG_DIR" "config do Zed"
     git_pull_repo "$BASIC_MEMORY_DIR" "basic-memory"
+    update_basic_memory_config_paths "/Users/"
     echo ""
 
     # Verifica se o Zed já está rodando
