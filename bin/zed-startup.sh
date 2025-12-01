@@ -69,37 +69,43 @@ update_basic_memory_config_paths() {
         return
     fi
 
-    local user_name desired_home old_home old_users tmp_file
+    local user_name desired_home old_home old_users changed
     user_name="$(basename "$HOME_DIR")"
     desired_home="${target_prefix%/}/${user_name}"
     old_home="/home/${user_name}"
     old_users="/Users/${user_name}"
-    tmp_file="$(mktemp "${config_file}.XXXX")"
+    changed=0
 
-    if jq \
-        --arg old_home "$old_home" \
-        --arg old_users "$old_users" \
-        --arg desired_home "$desired_home" \
-        '.projects |= (with_entries(
-            if (.value|type) == "string" then
-                .value |= (
-                    if startswith($old_home) then $desired_home + (ltrimstr($old_home) | sub("^/"; "/"))
-                    elif startswith($old_users) then $desired_home + (ltrimstr($old_users) | sub("^/"; "/"))
-                    else .
-                    end
-                )
-            else . end
-        ))' "$config_file" > "$tmp_file"; then
-        if cmp -s "$config_file" "$tmp_file"; then
-            echo -e "${BLUE}ℹ️  Caminhos do basic-memory já estão ajustados.${NC}"
-            rm -f "$tmp_file"
-        else
-            mv "$tmp_file" "$config_file"
-            echo -e "${GREEN}✓ Caminhos do basic-memory ajustados para ${target_prefix}${NC}"
+    while IFS=$'\t' read -r project_name project_path; do
+        if [ -z "$project_name" ] || [ -z "$project_path" ]; then
+            continue
         fi
+
+        local new_path
+        if [[ "$project_path" == "$old_home"* ]]; then
+            new_path="${desired_home}${project_path#$old_home}"
+        elif [[ "$project_path" == "$old_users"* ]]; then
+            new_path="${desired_home}${project_path#$old_users}"
+        else
+            continue
+        fi
+
+        if [ "$new_path" = "$project_path" ]; then
+            continue
+        fi
+
+        echo -e "${BLUE}${project_name} - New Path ${new_path}${NC}"
+        if basic-memory project move "$project_name" "$new_path"; then
+            changed=1
+        else
+            echo -e "${YELLOW}⚠️  Falha ao mover projeto ${project_name} para ${new_path}${NC}"
+        fi
+    done < <(jq -r '(.projects // {}) | to_entries[] | "\(.key)\t\(.value)"' "$config_file")
+
+    if [ "$changed" -eq 0 ]; then
+        echo -e "${BLUE}ℹ️  Caminhos do basic-memory já estão ajustados.${NC}"
     else
-        echo -e "${YELLOW}⚠️  Falha ao ajustar caminhos do basic-memory.${NC}"
-        rm -f "$tmp_file"
+        echo -e "${GREEN}✓ Caminhos do basic-memory ajustados para ${target_prefix}${NC}"
     fi
 }
 
