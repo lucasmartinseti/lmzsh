@@ -21,6 +21,7 @@ export PATH="$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
 export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
 # Ruby
 export PATH="$HOME/.gem/ruby/3.4.0/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
 # OpenJDK
 export PATH="$HOMEBREW_PREFIX/opt/openjdk/bin:$PATH"
 
@@ -30,7 +31,9 @@ source <(stern --completion=zsh)
 # colima
 source <(colima completion zsh)
 # Gcloud autocomplete setup
-source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+if [ -f "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc" ]; then
+  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+fi
 
 # Alias
 #Vim and Nvim
