@@ -26,14 +26,14 @@ export PATH="$PATH_LMZSH/bin:$PATH"
 # Check OS in .zshrc
 # Config Linux
 if [[ "$(uname -s)" == "Linux" ]]; then
-    
+
     # Includes
     for includes in $PATH_LMZSH/include/*.zsh; do
       if [[ -f $includes && "$includes" != "$PATH_LMZSH/include/10-macOS.zsh" ]]; then
         source $includes
       fi
     done
-    
+
     ### Load
     source $ZSH/oh-my-zsh.sh
 
@@ -53,6 +53,3 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
 else
     printf "Sistema Operacional não suportado.\n"
 fi
-
-# Created by `pipx` on 2026-03-18 16:25:45
-export PATH="$PATH:/Users/lucas/.local/bin"
