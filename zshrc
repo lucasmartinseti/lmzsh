@@ -53,3 +53,6 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
 else
     printf "Sistema Operacional não suportado.\n"
 fi
+
+# Created by `pipx` on 2026-03-18 16:25:45
+export PATH="$PATH:/Users/lucas/.local/bin"

@@ -48,3 +48,5 @@ alias cf='warp-cli status'
 alias winBox='winBox > /dev/null 2>&1 &'
 # Taks Master
 alias tm='task-master'
+# Obsidian
+alias ob="obsidian"
