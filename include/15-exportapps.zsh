@@ -10,3 +10,5 @@ export PIPENV_SHELL=zsh
 export KUBECONFIG="$(for f in "$HOME"/.kube/*(N.); do printf '%s:' "$f"; done | sed 's/:$//')"
 # cargo
 export PATH="$HOME/.cargo/bin:$PATH"
+# Created by `pipx` on 2026-03-18 16:25:45
+export PATH="$PATH:$HOME/.local/bin"
