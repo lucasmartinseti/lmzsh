@@ -7,9 +7,6 @@ ORIGINAL_DIR="$(pwd)"
 # Captura o diretório home
 HOME_DIR="$HOME"
 
-# Diretório do basic-memory
-BASIC_MEMORY_DIR="$HOME_DIR/.basic-memory"
-
 # Captura todos os parâmetros passados para o script
 ZED_PARAMS="$@"
 
@@ -69,7 +66,6 @@ if [ "$OS" = "Linux" ]; then
     echo
 
     git_pull_repo "$CONFIG_DIR" "config do Zed"
-    git_pull_repo "$BASIC_MEMORY_DIR" "basic-memory"
 
     # Retorna para o diretório original após o git pull
     echo ""
@@ -105,7 +101,6 @@ if [ "$OS" = "Linux" ]; then
         echo ""
         echo -e "${YELLOW}🔄 Zed foi fechado, sincronizando configurações...${NC}"
         git_sync_repo "$CONFIG_DIR" "config do Zed" "Auto-commit Zed config"
-        git_sync_repo "$BASIC_MEMORY_DIR" "basic-memory" "Auto-commit Basic Memory"
     ) &
 
     # Captura o PID do processo de monitoramento
@@ -121,7 +116,6 @@ elif [ "$OS" = "Darwin" ]; then
     echo
 
     git_pull_repo "$CONFIG_DIR" "config do Zed"
-    git_pull_repo "$BASIC_MEMORY_DIR" "basic-memory"
     echo ""
 
     # Verifica se o Zed já está rodando
@@ -155,7 +149,6 @@ elif [ "$OS" = "Darwin" ]; then
         echo ""
         echo -e "${YELLOW}🔄 Zed foi fechado, sincronizando configurações...${NC}"
         git_sync_repo "$CONFIG_DIR" "config do Zed" "Auto-commit Zed config"
-        git_sync_repo "$BASIC_MEMORY_DIR" "basic-memory" "Auto-commit Basic Memory"
     ) &
 
     # Captura o PID do processo de monitoramento
