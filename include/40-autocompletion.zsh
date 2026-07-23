@@ -12,3 +12,8 @@ complete -o nospace -C /usr/local/bin/mc mc
 HEROKU_AC_ZSH_SETUP_PATH=/Users/lucas/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 # codex
 source <(codex completion zsh)
+# wrangler
+source <(wrangler complete zsh)
+# agents-cli (registra os dois nomes: o atalho `acli` e o binário `agents-cli`)
+command -v acli       >/dev/null 2>&1 && source <(acli completion zsh)
+command -v agents-cli >/dev/null 2>&1 && source <(agents-cli completion zsh)

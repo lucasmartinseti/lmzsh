@@ -1,1 +1,0 @@
-/Users/lucas/.agents/AGENTS.md

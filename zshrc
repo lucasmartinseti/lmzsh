@@ -53,3 +53,5 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
 else
     printf "Sistema Operacional não suportado.\n"
 fi
+# agents-cli: version-managed agent CLIs
+export PATH="/Users/lucas/.agents/.cache/shims:$PATH"
